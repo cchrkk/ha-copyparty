@@ -1,0 +1,55 @@
+---
+name: copyparty
+version: "1.0.8"
+slug: copyparty
+description: File server with web UI, resumable uploads and WebDAV for the Home Assistant folders
+url: https://github.com/cchrkk/ha-copyparty
+arch:
+  - amd64
+  - aarch64
+init: false
+startup: application
+boot: auto
+ingress: true
+ingress_port: 3929
+panel_icon: mdi:folder-upload
+panel_title: copyparty
+panel_admin: false
+hassio_api: true
+homeassistant_api: false
+host_network: false
+map:
+  - homeassistant_config:rw
+  - share:rw
+  - media:rw
+  - backup:rw
+  - ssl:rw
+  - local_apps:rw
+  - all_app_configs:rw
+ports:
+  3923/tcp: 3923
+ports_description:
+  3923/tcp: Web UI and WebDAV (LAN or reverse proxy)
+webui: "http://[HOST]:[PORT:3923]/"
+options:
+  username: chrk
+  password: null
+  folders:
+    - config
+    - share
+    - media
+    - backup
+    - ssl
+    - addons
+    - addon_configs
+  permissions: rw
+  index: false
+  extra_config: ""
+schema:
+  username: str
+  password: password
+  folders:
+    - "match(^(config|share|media|backup|ssl|addons|addon_configs)$)"
+  permissions: list(r|rw)
+  index: bool
+  extra_config: str?

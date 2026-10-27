@@ -1,0 +1,35 @@
+---
+configuration:
+  username:
+    name: Username
+    description: The copyparty account allowed to browse and modify the folders.
+  password:
+    name: Password
+    description: >-
+      Password for the account. The app refuses to start while this is empty,
+      because the file server is reachable from the network.
+  folders:
+    name: Folders
+    description: >-
+      Which Home Assistant folders to expose, under the same names as the
+      Samba share app - config, share, media, backup, ssl, addons,
+      addon_configs.
+  permissions:
+    name: Permissions
+    description: >-
+      rw = read, write, move and delete. r = read-only.
+  index:
+    name: Build the file index
+    description: >-
+      Index every file on startup. Faster browsing and video thumbnails in big
+      folders, at the cost of a stat per file each start (and a full scan the
+      first time). Off by default: browsing, uploads and downloads work anyway.
+  extra_config:
+    name: Extra configuration
+    description: >-
+      Raw copyparty configuration appended to the generated file (extra
+      global options, extra accounts, extra volumes).
+network:
+  3923/tcp: >-
+    copyparty web UI and WebDAV, for the LAN or for a reverse proxy /
+    Cloudflare tunnel.

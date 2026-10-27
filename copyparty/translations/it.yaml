@@ -1,0 +1,35 @@
+---
+configuration:
+  username:
+    name: Utente
+    description: L'account copyparty che puo' sfogliare e modificare le cartelle.
+  password:
+    name: Password
+    description: >-
+      Password dell'account. L'app non parte finche' resta vuota, perche' il
+      file server e' raggiungibile dalla rete.
+  folders:
+    name: Cartelle
+    description: >-
+      Quali cartelle di Home Assistant esporre, con gli stessi nomi dell'app
+      Samba share - config, share, media, backup, ssl, addons, addon_configs.
+  permissions:
+    name: Permessi
+    description: >-
+      rw = lettura, scrittura, spostamento e cancellazione. r = sola lettura.
+  index:
+    name: Costruisci l'indice dei file
+    description: >-
+      Indicizza ogni file all'avvio. Sfogliare e le miniature dei video sono piu'
+      rapidi nelle cartelle grandi, al costo di uno stat per file a ogni avvio (e
+      di una scansione completa la prima volta). Spento di default: sfogliare,
+      caricare e scaricare funzionano lo stesso.
+  extra_config:
+    name: Configurazione extra
+    description: >-
+      Configurazione copyparty scritta in coda al file generato (altre opzioni
+      globali, altri account, altri volumi).
+network:
+  3923/tcp: >-
+    Interfaccia web e WebDAV di copyparty, per la LAN o per un reverse proxy /
+    tunnel Cloudflare.
