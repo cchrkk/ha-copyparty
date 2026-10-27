@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="copyparty/icon.png" width="128" height="128" alt="copyparty">
+</p>
+
 # copyparty per Home Assistant
 
 App (add-on) di Home Assistant che fa girare

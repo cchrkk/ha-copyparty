@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="copyparty/icon.png" width="128" height="128" alt="copyparty">
+</p>
+
 # copyparty for Home Assistant
 
 A Home Assistant app (add-on) that runs [copyparty](https://github.com/9001/copyparty)
@@ -34,10 +38,19 @@ copyparty/
   translations/          # option labels in English and Italian
   icon.png logo.png
 make-icons.ps1           # regenerates icon.png and logo.png from the upstream logo
+scripts/                 # bump-copyparty.py, used by the release workflow
+.github/workflows/       # daily check of PyPI: new copyparty release -> new app version
 ```
 
-Releases are just `version:` bumps in `copyparty/config.yaml`: the app store
-rebuilds the image from this repository.
+Releases are mostly automatic: `.github/workflows/bump-copyparty.yml` asks PyPI
+once a day, and when a newer copyparty exists it moves the pin in the
+`Dockerfile`, bumps `version:` in `copyparty/config.yaml` (the field Home
+Assistant watches to rebuild the image) and adds a `CHANGELOG.md` line, then
+commits. PyPI has no webhook, so it is polling; `workflow_dispatch` runs it by
+hand.
+
+To bump by hand: raise `version:` in `copyparty/config.yaml` (and the
+`COPYPARTY_VERSION` arg if needed) and push.
 
 ## Why two processes
 

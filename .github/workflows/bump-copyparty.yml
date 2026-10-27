@@ -1,0 +1,41 @@
+name: copyparty release
+
+# PyPI non manda webhook: si fa polling una volta al giorno. Se su PyPI c'è una
+# versione più nuova del pin nel Dockerfile, la si aggiorna insieme alla versione
+# dell'app (che è quella che fa ricostruire l'immagine a Home Assistant) e al
+# changelog.
+on:
+  schedule:
+    - cron: "17 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Bump the copyparty pin
+        id: bump
+        run: |
+          message=$(python scripts/bump-copyparty.py)
+          echo "message=$message" >> "$GITHUB_OUTPUT"
+
+      - name: Commit and push
+        run: |
+          if git diff --quiet; then
+            echo "nothing to do"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "${{ steps.bump.outputs.message }}"
+          git push
