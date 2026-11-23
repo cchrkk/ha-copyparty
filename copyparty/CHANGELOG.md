@@ -1,3 +1,7 @@
+## 1.0.9
+
+- copyparty 1.20.27 (upstream release, 2026-11-23).
+
 ## 1.0.8
 
 - If `/ssl/copyparty.pem` exists (key + certificate chain), the worker on port

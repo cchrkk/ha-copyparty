@@ -1,6 +1,6 @@
 ---
 name: copyparty
-version: "1.0.8"
+version: "1.0.9"
 slug: copyparty
 description: File server with web UI, resumable uploads and WebDAV for the Home Assistant folders
 url: https://github.com/cchrkk/ha-copyparty
