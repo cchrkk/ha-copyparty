@@ -13,7 +13,7 @@ RUN apk add --no-cache \
         nginx \
         tzdata
 
-ARG COPYPARTY_VERSION=1.20.27
+ARG COPYPARTY_VERSION=1.20.28
 RUN pip install --no-cache-dir "copyparty==${COPYPARTY_VERSION}"
 
 COPY run.sh /run.sh

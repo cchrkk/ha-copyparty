@@ -1,3 +1,7 @@
+## 1.0.10
+
+- copyparty 1.20.28 (upstream release, 2026-11-24).
+
 ## 1.0.9
 
 - copyparty 1.20.27 (upstream release, 2026-11-23).
